@@ -86,5 +86,20 @@ namespace Mu3
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+        private static MediaElement _globalAudioElement = new MediaElement();
+
+        //careful while renaming. refactor for renaming.
+        public static MediaElement GlobalAudioElement
+        {
+            get { return _globalAudioElement; }
+        }
+
+        private void OnMediaLoaded(object sender, RoutedEventArgs e)
+        {
+            if (_globalAudioElement == null)
+                _globalAudioElement = sender as MediaElement;
+        }
+
     }
 }

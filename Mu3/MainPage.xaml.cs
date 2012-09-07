@@ -56,7 +56,10 @@ namespace Mu3
 
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            //this.Frame.Navigate(typeof(GroupDetailPage), ((SampleDataGroup)group).UniqueId);
+            var uid = ((SampleDataGroup)group).UniqueId;
+            if (uid == "Group-1")
+                this.Frame.Navigate(typeof(PlayPage));
+
         }
 
         /// <summary>
@@ -70,7 +73,8 @@ namespace Mu3
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            //this.Frame.Navigate(typeof(ItemDetailPage), itemId);
+            if(itemId=="Group-1-Item-1")
+                this.Frame.Navigate(typeof(PlayPage), itemId);
         }
     }
 }

@@ -47,7 +47,9 @@
             ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
             ItemTemplate="{StaticResource Long500x300ItemTemplate}"
             SelectionMode="None"
-            IsSwipeEnabled="false">
+            IsSwipeEnabled="False"
+            IsItemClickEnabled="True"
+            ItemClick="ItemView_ItemClick">
 
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>                        
@@ -61,6 +63,7 @@
                             <Grid Margin="1,0,0,6">
                                 <Button
                                     AutomationProperties.Name="Group Title"
+                                    Click="Header_Click"
                                     Style="{StaticResource TextPrimaryButtonStyle}">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Title}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
