@@ -79,27 +79,6 @@ namespace Mu3
 
         string lfm_api_key = Globalv.lfm_api_key;
         MusicProperties id3;
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
- 	
-            if (MediaControl.IsPlaying)
-            {
-                id3 = Playlist.NowPlaying[0];
-                SongTitle.Text = id3.Title;
-                Artist.Text = id3.Title;
-            }
-            else
-            {
-                SongTitle.Text = "Play a song now!";
-                Artist.Text = "Swipe up from bottom for more options!";
-            }
-            /*
-            if (Globalv.session_key != null)
-                LoginBtn.Content = "Logoff";
-            else
-                LoginBtn.Content = "Login";
-             */ 
-        }
 
         private async void Collection_Click_1(object sender, RoutedEventArgs e)
         {
@@ -231,6 +210,29 @@ namespace Mu3
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void pageRoot_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            if (MediaControl.IsPlaying)
+            {
+                id3 = Playlist.NowPlaying[0];
+                SongTitle.Text = id3.Title;
+                Artist.Text = id3.Title;
+            }
+            else
+            {
+                SongTitle.Text = "Play a song now!";
+                Artist.Text = "Swipe up from bottom for more options!";
+            }
+            /*
+            if (Globalv.session_key != null)
+                LoginBtn.Content = "Logoff";
+            else
+                LoginBtn.Content = "Login";
+             */ 
+
+
         }
     }
 }

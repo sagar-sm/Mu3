@@ -115,6 +115,8 @@
     <Compile Include="Classes\Artist.cs" />
     <Compile Include="Classes\OAuthToken.cs" />
     <Compile Include="Classes\Playlist.cs" />
+    <Compile Include="Classes\TweetViewModel.cs" />
+    <Compile Include="Classes\Twitter.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\BooleanNegationConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
@@ -128,19 +130,27 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Metropolis.cs" />
+    <Compile Include="MusicMap.xaml.cs">
+      <DependentUpon>MusicMap.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PlayPage.xaml.cs">
       <DependentUpon>PlayPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Song.cs" />
+    <Compile Include="TweetMusic.xaml.cs">
+      <DependentUpon>TweetMusic.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Mu3_TemporaryKey.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\BadgeIcon.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\PlayMusic.png" />
     <Content Include="Assets\RecoArtists.png" />
@@ -166,10 +176,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MusicMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PlayPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TweetMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.8\lib\winrt45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="TwitterRtLibrary">
+      <HintPath>..\packages\TwitterRt.1.0.4\lib\winrt45\TwitterRtLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

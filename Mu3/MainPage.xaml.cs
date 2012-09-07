@@ -73,8 +73,14 @@ namespace Mu3
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            if(itemId=="Group-1-Item-1")
+            if (itemId == "Group-1-Item-1")
                 this.Frame.Navigate(typeof(PlayPage), itemId);
+            else if (itemId == "Group-2-Item-1")
+                this.Frame.Navigate(typeof(MusicMap));
+            else if (itemId == "Group-3-Item-1")
+                this.Frame.Navigate(typeof(MusicMap));
+            else if (itemId == "Group-4-Item-1")
+                this.Frame.Navigate(typeof(TweetMusic));
         }
     }
 }
