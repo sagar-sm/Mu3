@@ -260,14 +260,14 @@ namespace Mu3.Data
                         "Curabitur class aliquam vestibulum nam curae maecenas sed integer cras phasellus suspendisse quisque donec dis praesent accumsan bibendum pellentesque condimentum adipiscing etiam consequat vivamus dictumst aliquam duis convallis scelerisque est parturient ullamcorper aliquet fusce suspendisse nunc hac eleifend amet blandit facilisi condimentum commodo scelerisque faucibus aenean ullamcorper ante mauris dignissim consectetuer nullam lorem vestibulum habitant conubia elementum pellentesque morbi facilisis arcu sollicitudin diam cubilia aptent vestibulum auctor eget dapibus pellentesque inceptos leo egestas interdum nulla consectetuer suspendisse adipiscing pellentesque proin lobortis sollicitudin augue elit mus congue fermentum parturient fringilla euismod feugiat");
 
             var group1 = new SampleDataGroup("Group-1",
-                    "Group Title: 1",
-                    "Group Subtitle: 1",
+                    "Play",
+                    "Explore your music library and play some music. Start sharing right away from your Last.fm account!",
                     "Assets/DarkGray.png",
                     "Group Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor scelerisque lorem in vehicula. Aliquam tincidunt, lacus ut sagittis tristique, turpis massa volutpat augue, eu rutrum ligula ante a ante");
             group1.Items.Add(new SampleDataItem("Group-1-Item-1",
                     "Item Title: 1",
-                    "Item Subtitle: 1",
-                    "Assets/LightGray.png",
+                    "Explore your music library and play some music. Start sharing right away from your Last.fm account!",
+                    "Assets/PlayMusic.png",
                     "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
                     ITEM_CONTENT,
                     group1));
@@ -303,14 +303,14 @@ namespace Mu3.Data
             this.AllGroups.Add(group1);
 
             var group2 = new SampleDataGroup("Group-2",
-                    "Group Title: 2",
-                    "Group Subtitle: 2",
+                    "Visualize",
+                    "View the top charts and the trending music on a map.",
                     "Assets/LightGray.png",
                     "Group Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor scelerisque lorem in vehicula. Aliquam tincidunt, lacus ut sagittis tristique, turpis massa volutpat augue, eu rutrum ligula ante a ante");
             group2.Items.Add(new SampleDataItem("Group-2-Item-1",
                     "Item Title: 1",
-                    "Item Subtitle: 1",
-                    "Assets/DarkGray.png",
+                    "View the top charts and the trending music on a map.",
+                    "Assets/MapMusic.png",
                     "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
                     ITEM_CONTENT,
                     group2));
@@ -329,18 +329,19 @@ namespace Mu3.Data
                     "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
                     ITEM_CONTENT,
                     group2));
-            this.AllGroups.Add(group2);
              */
+            this.AllGroups.Add(group2);
+             
 
             var group3 = new SampleDataGroup("Group-3",
-                    "Group Title: 3",
+                    "View Recommendations",
                     "Group Subtitle: 3",
                     "Assets/MediumGray.png",
                     "Group Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor scelerisque lorem in vehicula. Aliquam tincidunt, lacus ut sagittis tristique, turpis massa volutpat augue, eu rutrum ligula ante a ante");
             group3.Items.Add(new SampleDataItem("Group-3-Item-1",
                     "Item Title: 1",
-                    "Item Subtitle: 1",
-                    "Assets/MediumGray.png",
+                    "See personalized artist recommendations based on your listening history and choice of genre.",
+                    "Assets/RecoArtists.png",
                     "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
                     ITEM_CONTENT,
                     group3));
@@ -391,14 +392,14 @@ namespace Mu3.Data
             this.AllGroups.Add(group3);
 
             var group4 = new SampleDataGroup("Group-4",
-                    "Group Title: 4",
+                    "Tweet",
                     "Group Subtitle: 4",
                     "Assets/LightGray.png",
                     "Group Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor scelerisque lorem in vehicula. Aliquam tincidunt, lacus ut sagittis tristique, turpis massa volutpat augue, eu rutrum ligula ante a ante");
             group4.Items.Add(new SampleDataItem("Group-4-Item-1",
                     "Item Title: 1",
-                    "Item Subtitle: 1",
-                    "Assets/DarkGray.png",
+                    "Recommend your favourite music to your followers on Twitter.",
+                    "Assets/TweetDisp.png",
                     "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
                     ITEM_CONTENT,
                     group4));
@@ -442,14 +443,14 @@ namespace Mu3.Data
             this.AllGroups.Add(group4);
 
             var group5 = new SampleDataGroup("Group-5",
-                    "Group Title: 5",
-                    "Group Subtitle: 5",
+                    "Top Charts",
+                    "View the worldwide top charts.",
                     "Assets/MediumGray.png",
                     "Group Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor scelerisque lorem in vehicula. Aliquam tincidunt, lacus ut sagittis tristique, turpis massa volutpat augue, eu rutrum ligula ante a ante");
             group5.Items.Add(new SampleDataItem("Group-5-Item-1",
                     "Item Title: 1",
-                    "Item Subtitle: 1",
-                    "Assets/LightGray.png",
+                    "View the worldwide top charts.",
+                    "Assets/TopTracks.png",
                     "Item Description: Pellentesque porta, mauris quis interdum vehicula, urna sapien ultrices velit, nec venenatis dui odio in augue. Cras posuere, enim a cursus convallis, neque turpis malesuada erat, ut adipiscing neque tortor ac erat.",
                     ITEM_CONTENT,
                     group5));
@@ -541,7 +542,7 @@ namespace Mu3.Data
                     ITEM_CONTENT,
                     group6));
              */
-            this.AllGroups.Add(group6);
+            //this.AllGroups.Add(group6);
         }
     }
 }

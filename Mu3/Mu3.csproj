@@ -126,10 +126,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\PlayMusic.png" />
+    <Content Include="Assets\RecoArtists.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\TopTracks.png" />
+    <Content Include="Assets\TweetDisp.png" />
     <Content Include="Common\ReadMe.txt" />
+    <Content Include="Assets\MapMusic.png" />
+    <Content Include="DataModel\TweetDisp.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
