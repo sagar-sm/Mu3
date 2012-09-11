@@ -56,9 +56,17 @@ namespace Mu3
 
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var uid = ((SampleDataGroup)group).UniqueId;
-            if (uid == "Group-1")
+            var itemId = ((SampleDataGroup)group).UniqueId;
+            if (itemId == "Group-1")
                 this.Frame.Navigate(typeof(PlayPage));
+            else if (itemId == "Group-2")
+                this.Frame.Navigate(typeof(MusicMap));
+            else if (itemId == "Group-3")
+                this.Frame.Navigate(typeof(RecoArtists));
+            else if (itemId == "Group-4")
+                this.Frame.Navigate(typeof(TweetMusic));
+            else if (itemId == "Group-5")
+                this.Frame.Navigate(typeof(Trends));
 
         }
 
@@ -78,9 +86,11 @@ namespace Mu3
             else if (itemId == "Group-2-Item-1")
                 this.Frame.Navigate(typeof(MusicMap));
             else if (itemId == "Group-3-Item-1")
-                this.Frame.Navigate(typeof(MusicMap));
+                this.Frame.Navigate(typeof(RecoArtists));
             else if (itemId == "Group-4-Item-1")
                 this.Frame.Navigate(typeof(TweetMusic));
+            else if (itemId == "Group-5-Item-1")
+                this.Frame.Navigate(typeof(Trends));
         }
     }
 }

@@ -33,8 +33,8 @@ namespace Mu3
         public MusicMap()
         {
             this.InitializeComponent();
-            myMap.Center = new Location(21.7679, 78.8718);
-            myMap.ZoomLevel = 4;
+            //myMap.Center = new Location(21.7679, 78.8718);
+            myMap.ZoomLevel = 2.8;
             myMap.MapType = MapType.Birdseye;
 
         }

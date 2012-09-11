@@ -40,12 +40,12 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Margin="0">
-            <bm:Map Height="350" Credentials="AuPnFA1hWmAaG0naEf45hKbm0ao5EnQZJP1hCRgAA-w0jytoMTlTd_22_jsdPDCt" x:Name="myMap" Loaded="myMap_Loaded_1">
-                <bm:Map.Center>
+            <bm:Map Height="370" Credentials="AuPnFA1hWmAaG0naEf45hKbm0ao5EnQZJP1hCRgAA-w0jytoMTlTd_22_jsdPDCt" x:Name="myMap" Loaded="myMap_Loaded_1">
+                <!--bm:Map.Center>
                     <bm:Location Latitude="46.227480" Longitude="-122.192955" />
-                </bm:Map.Center>
+                </bm:Map.Center-->
             </bm:Map>
-            <TextBlock Name="SubHeaderTb" Text="Country Trends" Margin="30,10,10,10" Style="{StaticResource PageSubheaderTextStyle}"/>
+            <TextBlock Name="SubHeaderTb" Text="Tap a pin on the map to view the music trends there..." Margin="30,10,10,10" Style="{StaticResource PageSubheaderTextStyle}"/>
             <ScrollViewer Margin="0,5,0,10" Style="{StaticResource HorizontalScrollViewerStyle}">
                 <StackPanel Orientation="Horizontal">
                     <GridView Name="itemsGridView"
