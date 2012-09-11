@@ -18,7 +18,7 @@
       <VisualElements DisplayName="Mu3" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Mu3" ForegroundText="light" BackgroundColor="#464646">
         <LockScreen Notification="badge" BadgeLogo="Assets\BadgeIcon.png" />
         <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#000000" />
       </VisualElements>
       <Extensions>
         <Extension Category="windows.backgroundTasks" Executable="$targetnametoken$.exe" EntryPoint="Mu3.App">
@@ -27,10 +27,19 @@
             <Task Type="audio" />
           </BackgroundTasks>
         </Extension>
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name=".xml">
+            <SupportedFileTypes>
+              <FileType>.xml</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>
   <Capabilities>
+    <Capability Name="documentsLibrary" />
+    <Capability Name="removableStorage" />
     <Capability Name="videosLibrary" />
     <Capability Name="musicLibrary" />
     <Capability Name="internetClientServer" />

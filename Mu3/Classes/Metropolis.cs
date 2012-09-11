@@ -11,6 +11,8 @@ namespace Mu3
     {
         public string name { get; set; }
         public string country { get; set; }
-        public Location latlng { get; set; }
+        //public Location latlng { get; set; }
+        public double lat { get; set; }
+        public double lon { get; set; }
     }
 }

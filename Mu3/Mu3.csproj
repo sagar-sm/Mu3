@@ -162,6 +162,7 @@
     <Content Include="Common\ReadMe.txt" />
     <Content Include="Assets\MapMusic.png" />
     <Content Include="DataModel\TweetDisp.png" />
+    <Content Include="Files\pushpin_info.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -190,6 +191,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Mintwit">
+      <HintPath>..\..\MinTwit\Mintwit\bin\x86\Release\Mintwit.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.8\lib\winrt45\Newtonsoft.Json.dll</HintPath>
     </Reference>

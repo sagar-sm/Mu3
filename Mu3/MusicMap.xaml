@@ -8,11 +8,12 @@
     xmlns:common="using:Mu3.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:bm="using:Bing.Maps"
     mc:Ignorable="d">
 
     <Page.Resources>
 
-        <x:String x:Key="AppName">Visualize</x:String>
+        <x:String x:Key="AppName">Visualize (beta)</x:String>
     </Page.Resources>
 
     <!--
@@ -26,6 +27,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <ProgressBar Name="progbar" IsIndeterminate="True" Margin="0,0,0,120"/>
+
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
@@ -35,6 +38,35 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
+
+        <StackPanel Grid.Row="1" Margin="0">
+            <bm:Map Height="350" Credentials="AuPnFA1hWmAaG0naEf45hKbm0ao5EnQZJP1hCRgAA-w0jytoMTlTd_22_jsdPDCt" x:Name="myMap" Loaded="myMap_Loaded_1">
+                <bm:Map.Center>
+                    <bm:Location Latitude="46.227480" Longitude="-122.192955" />
+                </bm:Map.Center>
+            </bm:Map>
+            <TextBlock Name="SubHeaderTb" Text="Country Trends" Margin="30,10,10,10" Style="{StaticResource PageSubheaderTextStyle}"/>
+            <ScrollViewer Margin="0,5,0,10" Style="{StaticResource HorizontalScrollViewerStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <GridView Name="itemsGridView"
+                    AutomationProperties.AutomationId="ItemGridView"
+                    AutomationProperties.Name="Items In Group" 
+                    IsItemClickEnabled="False" Height = "200">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Width="370" Height="70" Margin="10,0,0,0">
+                                    <Image Name="AlbumArtHolder" Source="{Binding image}" Stretch="UniformToFill"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Name="TitleTb" Margin="5,2,2,2" TextWrapping="NoWrap" Text="{Binding Title}" Style="{StaticResource SubheaderTextStyle}" />
+                                        <TextBlock Name="ArtistTb" Margin="5,2,2,2" Text="{Binding Artist}" Style="{StaticResource ItemTextStyle}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
 
