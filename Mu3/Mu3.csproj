@@ -118,6 +118,7 @@
     <Compile Include="Classes\Artist.cs" />
     <Compile Include="Classes\OAuthToken.cs" />
     <Compile Include="Classes\Playlist.cs" />
+    <Compile Include="Classes\Security.cs" />
     <Compile Include="Classes\TweetViewModel.cs" />
     <Compile Include="Classes\Twitter.cs" />
     <Compile Include="Common\BindableBase.cs" />

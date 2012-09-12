@@ -10,16 +10,16 @@ namespace Mu3
 {
     static class Globalv
     {
-        public static string session_key = null;
+        public static string session_key = null; //vault
         public static string lfm_api_key = "4c4fdf4fe3bab8b93865409ec9e35df1";
         public static List<Artist> RecommendedArtists = new List<Artist>();
         public static List<Song> RecommendedTracks = new List<Song>();
         public static List<Song> GlobalTopTracks = new List<Song>();
         public static List<Song> CountryTrends = new List<Song>();
         public static List<Metropolis> AllMetros = new List<Metropolis>();
-        public static OAuthToken TwitterAccessToken = new OAuthToken();
+        public static OAuthToken TwitterAccessToken = new OAuthToken(); //vault
         public static string ConsumerKey = "jvookLg4Icyl4757z4swSA";
-        public static string ConsumerSecret = "6yUT7YIeqSg3dmUJ3p39oeWNkZTEM4wAjExdlOcuC4";
+        public static string ConsumerSecret = "6yUT7YIeqSg3dmUJ3p39oeWNkZTEM4wAjExdlOcuC4"; //vault
         public static string TwitterUserId;
 
         public static long unix_timestamp()

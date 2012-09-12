@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Security.Credentials;
 
 using Mu3.Data;
 
@@ -26,6 +27,7 @@ namespace Mu3
         public MainPage()
         {
             this.InitializeComponent();
+
         }
 
         /// <summary>

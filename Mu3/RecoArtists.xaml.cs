@@ -16,6 +16,7 @@ using Windows.Security.Authentication;
 using Windows.Security.Authentication.Web;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
+using Windows.Security.Credentials;
 using Windows.Storage.Streams;
 using System.Net.Http;
 using System.Xml;
@@ -33,6 +34,9 @@ namespace Mu3
         public RecoArtists()
         {
             this.InitializeComponent();
+            
+            //For debugging purposes only.
+            //Security._vault.Remove(Security._vault.Retrieve("Session Key", "user"));
         }
         System.Uri EndUri = WebAuthenticationBroker.GetCurrentApplicationCallbackUri();
 
@@ -57,6 +61,14 @@ namespace Mu3
 
         private async void pageRoot_Loaded_1(object sender, RoutedEventArgs e)
         {
+            if (Security._vault.RetrieveAll().Count == 0)
+                Globalv.session_key = null;
+            else
+            {
+                PasswordCredential rt = Security._vault.Retrieve("Session Key", "user");
+                rt.RetrievePassword();
+                Globalv.session_key = rt.Password;
+            }
             if (Globalv.session_key == null)
             {
                 progbar.Visibility = Visibility.Visible;
@@ -96,7 +108,16 @@ namespace Mu3
                     using (XmlReader rd = XmlReader.Create(new StringReader(xml_resp)))
                     {
                         rd.ReadToFollowing("key");
+
                         Globalv.session_key = rd.ReadElementContentAsString();
+                        var c = new PasswordCredential("Session Key", "user", Globalv.session_key);
+                        Mu3.Security._vault.Add(c);
+                        /*
+                        PasswordCredential rt = Security._vault.Retrieve("Session Key", "user");
+                        rt.RetrievePassword();
+                        MessageDialog m = new MessageDialog(rt.Password);
+                        await m.ShowAsync();
+                         */
                     }
                     //MessageDialog m1 = new MessageDialog(Globalv.session_key);
                     //await m1.ShowAsync();
