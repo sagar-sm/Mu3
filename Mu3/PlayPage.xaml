@@ -8,12 +8,11 @@
     xmlns:common="using:Mu3.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pbl="using:ParallaxBackgroundLibrary"
     mc:Ignorable="d"
     Loaded="pageRoot_Loaded_1">
 
     <Page.Resources>
-
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">Play</x:String>
     </Page.Resources>
 
@@ -48,16 +47,16 @@
                 <Button Name="VolBtn" Click="VolBtn_Click_1" Width="60" Height="60" Content="&#xE15D;"  FontSize="20" BorderThickness="0" FontFamily="Segoe UI Symbol" />
                 <Button Name="VolSlider" Width="100"/>
             </StackPanel-->
-                <Image Name="AlbumArtHolder" HorizontalAlignment="Left" Height="200" Width="200" Margin="100,150,30,30"/>
+                <StackPanel Orientation="Horizontal" Margin="100,100,300,30">
+                    <Image Name="AlbumArtHolder" HorizontalAlignment="Left" Height="200" Width="200"/>
+                    <TextBlock Name="SummaryInfoTbx" TextWrapping="Wrap" Width="700" Style="{StaticResource SubtitleTextStyle}" Margin="10"/>
+                </StackPanel>
                 <TextBlock Name="SongTitle" Margin="100,0,0,0" Style="{StaticResource HeaderTextStyle}"/>
                 <TextBlock Name="Artist" Margin="100,10,0,0" Style="{StaticResource SubheaderTextStyle}"/>
-                <StackPanel Orientation="Horizontal" Margin="100,10,10,10">
+                <!--StackPanel Orientation="Horizontal" Margin="100,10,10,10">
                     <Button Name="LoveBtn" Margin="5" BorderThickness="0" Height="50" Width="50" FontSize="18" Content="&#xE0A5;" FontFamily="Segoe UI Symbol"/>
                     <Button Name="BanBtn" Margin="5" BorderThickness="0" Height="50" Width="50" FontSize="20" Content="&#xE19E;" FontFamily="Segoe UI Symbol"/>
-                </StackPanel>
-                <TextBlock Name="TitleInfoTbx" Style="{StaticResource PageSubheaderTextStyle}" Margin="5"/>
-                <TextBlock Name="SubtitleInfoTbx" Style="{StaticResource CaptionTextStyle}" Margin="5" />
-                <TextBlock Name="SummaryInfoTbx" Style="{StaticResource BodyTextStyle}" Margin="5" />
+                </StackPanel-->
 
                 <!--TextBox Name="DebugTB" Height="30" TextWrapping="Wrap"/-->
             </StackPanel>
@@ -98,6 +97,13 @@
             <Grid>
                 <Button Name="Collection" HorizontalAlignment="Left"  
                     Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Music Library" Content="&#xE142;" Click="Collection_Click_1" IsDoubleTapEnabled="False"/>
+                <Button Name="Scrobble" HorizontalAlignment="Left" Margin="120,0,0,0"
+                    Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Last.fm Connect" Content="&#x2C0E;" Click="Scrobble_Click_1" IsDoubleTapEnabled="False"/>
+                <Button Name="Love" HorizontalAlignment="Left" Margin="240,0,0,0"
+                    Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Love Track" Content="&#xE0A5;" Click="Love_Click_1" IsDoubleTapEnabled="False"/>
+                <Button Name="Ban" HorizontalAlignment="Left" Margin="360,0,0,0"
+                    Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Ban Track" Content="&#xE007;" Click="Ban_Click_1" IsDoubleTapEnabled="False"/>
+
             </Grid>
         </AppBar>
     </Page.BottomAppBar>

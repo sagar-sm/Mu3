@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\BadgeIcon.png" />
+    <Content Include="Assets\BG.jpg" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\PlayMusic.png" />
     <Content Include="Assets\RecoArtists.png" />
@@ -232,6 +233,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.8\lib\winrt45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ParallaxBackgroundLibrary">
+      <HintPath>..\packages\ParallaxBackground.1.0.1\lib\winrt45\ParallaxBackgroundLibrary.dll</HintPath>
     </Reference>
     <Reference Include="TwitterRtLibrary">
       <HintPath>..\packages\TwitterRt.1.0.4\lib\winrt45\TwitterRtLibrary.dll</HintPath>

@@ -9,9 +9,13 @@
     xmlns:data="using:Mu3.Data"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pbl="using:ParallaxBackgroundLibrary"
     mc:Ignorable="d">
 
     <Page.Resources>
+        <pbl:ParallaxConverter 
+           x:Key="ParallaxConverter"/>
+        <ImageBrush x:Key="background" ImageSource="Assets/BG.jpg"/>
 
         <!--
             Collection of grouped items displayed by this page, bound to a subset
@@ -31,14 +35,19 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid Style="{StaticResource LayoutRootStyle}">
+    <Grid Background="{StaticResource background}">
+        <Grid.RenderTransform>
+            <CompositeTransform 
+                   TranslateX="{Binding ElementName=itemGridView, Path=HorizontalOffset, Converter={StaticResource ParallaxConverter}}" />
+        </Grid.RenderTransform>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Horizontal scrolling grid used in most view states -->
-        <GridView
+            <GridView
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Grouped Items"

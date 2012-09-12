@@ -76,9 +76,6 @@ namespace Mu3
                 String lfmURL = "https://www.last.fm/api/auth/?api_key=" + Globalv.lfm_api_key + "&cb=" + EndUri;
 
                 System.Uri StartUri = new Uri(lfmURL);
-                //System.Uri EndUri = new Uri("ms-app://mu3.com");
-
-                //DebugPrint("Navigating to: " + FacebookURL);
 
                 WebAuthenticationResult WebAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
                                                         WebAuthenticationOptions.None,

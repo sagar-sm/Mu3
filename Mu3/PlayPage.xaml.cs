@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
@@ -24,6 +27,11 @@ using Windows.Storage.FileProperties;
 using Windows.Storage.Pickers;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Streams;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
+using Windows.Security.Authentication;
+using Windows.Security.Authentication.Web;
+using Windows.Security.Credentials;
 using Windows.Media;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
@@ -47,6 +55,10 @@ namespace Mu3
         }
 
         bool isScrobbledOnce = false;
+        bool justLoggedOut = false;
+
+        System.Uri EndUri = WebAuthenticationBroker.GetCurrentApplicationCallbackUri();
+
         private void MediaControl_StopPressed(object sender, object e)
         {
             App.GlobalAudioElement.Stop();
@@ -119,10 +131,10 @@ namespace Mu3
                         using (XmlReader rd = XmlReader.Create(new StringReader(xmlinfo)))
                         {
                             rd.ReadToFollowing("name");
-                            TitleInfoTbx.Text = rd.ReadElementContentAsString();
+                            //TitleInfoTbx.Text = rd.ReadElementContentAsString();
                             rd.ReadToFollowing("artist");
                             rd.ReadToDescendant("name");
-                            SubtitleInfoTbx.Text = rd.ReadElementContentAsString();
+                            //SubtitleInfoTbx.Text = rd.ReadElementContentAsString();
                         }
 
                         using (XmlReader rd = XmlReader.Create(new StringReader(xmlinfo)))
@@ -225,6 +237,10 @@ namespace Mu3
                 SongTitle.Text = "Play a song now!";
                 Artist.Text = "Swipe up from bottom for more options!";
             }
+
+            if(Security._vault.RetrieveAll().Count != 0)
+                Scrobble.SetValue(AutomationProperties.NameProperty, "Last.fm Signout");
+
             /*
             if (Globalv.session_key != null)
                 LoginBtn.Content = "Logoff";
@@ -233,6 +249,109 @@ namespace Mu3
              */ 
 
 
+        }
+
+        private async void Scrobble_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (Security._vault.RetrieveAll().Count == 0)
+            {
+                Globalv.session_key = null;
+                Scrobble.SetValue(AutomationProperties.NameProperty, "Last.fm Connect");
+                justLoggedOut = false;
+            }
+            else
+            {
+                PasswordCredential rt = Security._vault.Retrieve("Session Key", "user");
+                rt.RetrievePassword();
+                Globalv.session_key = rt.Password;
+                //sign out
+
+                Security._vault.Remove(rt);
+                Globalv.session_key = null;
+                Scrobble.SetValue(AutomationProperties.NameProperty, "Last.fm Connect");
+                justLoggedOut = true;
+
+            }
+            if (Globalv.session_key == null && justLoggedOut == false)
+            {
+                String lfmURL = "https://www.last.fm/api/auth/?api_key=" + Globalv.lfm_api_key + "&cb=" + EndUri;
+
+                System.Uri StartUri = new Uri(lfmURL);
+
+                WebAuthenticationResult WebAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
+                                                        WebAuthenticationOptions.None,
+                                                        StartUri,
+                                                        EndUri);
+
+                if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.Success)
+                {
+                    //get and save lfm session key
+                    string[] responseData = WebAuthenticationResult.ResponseData.ToString().Split('?');
+                    string token = responseData[1].Substring(6);
+
+                    HttpClient cli = new HttpClient();
+                    string getsk_sig = "api_key" + Globalv.lfm_api_key + "methodauth.getSessiontoken" + token + "0e6e780c3cfa3faedf0c58d5aa6de92f";
+                    HashAlgorithmProvider objAlgProv = HashAlgorithmProvider.OpenAlgorithm("MD5");
+                    CryptographicHash objHash = objAlgProv.CreateHash();
+                    IBuffer buffSig = CryptographicBuffer.ConvertStringToBinary(getsk_sig, BinaryStringEncoding.Utf8);
+                    objHash.Append(buffSig);
+                    IBuffer buffSighash = objHash.GetValueAndReset();
+
+                    string api_sig = CryptographicBuffer.EncodeToHexString(buffSighash);
+
+                    string get_sk = @"http://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=" + Globalv.lfm_api_key + "&api_sig=" + api_sig + "&token=" + token;
+                    HttpResponseMessage r = await cli.GetAsync(get_sk);
+                    string xml_resp = await r.Content.ReadAsStringAsync();
+
+                    using (XmlReader rd = XmlReader.Create(new StringReader(xml_resp)))
+                    {
+                        rd.ReadToFollowing("key");
+
+                        Globalv.session_key = rd.ReadElementContentAsString();
+                        var c = new PasswordCredential("Session Key", "user", Globalv.session_key);
+                        Mu3.Security._vault.Add(c);
+
+                        justLoggedOut = false;
+                        Scrobble.SetValue(AutomationProperties.NameProperty, "Last.fm Signout");
+                        /*
+                        PasswordCredential rt = Security._vault.Retrieve("Session Key", "user");
+                        rt.RetrievePassword();
+                        MessageDialog m = new MessageDialog(rt.Password);
+                        await m.ShowAsync();
+                         */
+                    }
+                    //MessageDialog m1 = new MessageDialog(Globalv.session_key);
+                    //await m1.ShowAsync();
+                }
+                else if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.ErrorHttp)
+                {
+                    MessageDialog m = new MessageDialog("HTTP Error returned by AuthenticateAsync() : " + WebAuthenticationResult.ResponseErrorDetail.ToString());
+                    await m.ShowAsync();
+                }
+                else
+                {
+                    MessageDialog m = new MessageDialog("Error returned by AuthenticateAsync() : " + WebAuthenticationResult.ResponseStatus.ToString());
+                    await m.ShowAsync();
+                }
+
+            }
+
+        }
+
+        private async void Love_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (MediaControl.IsPlaying)
+            {
+                await Lastfm.track_love(id3);
+            }
+        }
+
+        private async void Ban_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (MediaControl.IsPlaying)
+            {
+                await Lastfm.track_love(id3);
+            }
         }
     }
 }
