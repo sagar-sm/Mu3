@@ -238,8 +238,13 @@ namespace Mu3
                 Artist.Text = "Swipe up from bottom for more options!";
             }
 
-            if(Security._vault.RetrieveAll().Count != 0)
+            if (Security._vault.RetrieveAll().Count != 0)
+            {
                 Scrobble.SetValue(AutomationProperties.NameProperty, "Last.fm Signout");
+                PasswordCredential rt = Security._vault.Retrieve("Session Key", "user");
+                rt.RetrievePassword();
+                Globalv.session_key = rt.Password;
+            }
 
             /*
             if (Globalv.session_key != null)
