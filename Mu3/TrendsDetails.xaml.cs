@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Xml;
+using Windows.Media;
 
 // The Split Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234234
 
@@ -166,6 +167,11 @@ namespace Mu3
         private void OnLoad(object sender, RoutedEventArgs e)
         {
             itemListView.ItemsSource = Globalv.GlobalTopTracks;
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
+
         }
         async void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -190,6 +196,15 @@ namespace Mu3
                 }
             }
             catch (Exception) { TrackContentTb.Text = "Additional information is currently unavailable."; }
+        }
+
+        private void BG1_Completed_1(object sender, object e)
+        {
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
+
         }
 
     }

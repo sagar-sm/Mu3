@@ -15,9 +15,8 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Mu3.App">
-      <VisualElements DisplayName="Mu3" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Mu3" ForegroundText="light" BackgroundColor="#464646">
+      <VisualElements DisplayName="Mu" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Mu3" ForegroundText="light" BackgroundColor="#000000">
         <LockScreen Notification="badge" BadgeLogo="Assets\BadgeIcon.png" />
-        <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#000000" />
       </VisualElements>
       <Extensions>

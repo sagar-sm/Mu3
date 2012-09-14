@@ -94,5 +94,10 @@ namespace Mu3
             else if (itemId == "Group-5-Item-1")
                 this.Frame.Navigate(typeof(Trends));
         }
+
+        private void pageRoot_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            ArrowsFlyIn.Begin();
+        }
     }
 }

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
 using System.Xml;
+using Windows.Media;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -70,6 +71,11 @@ namespace Mu3
 
         private async void pageRoot_Loaded_1(object sender, RoutedEventArgs e)
         {
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
+
             if (Globalv.GlobalTopTracks.Count == 0)
             {
                 progbar.Visibility = Visibility.Visible;
@@ -159,6 +165,15 @@ namespace Mu3
                 itemsGridView.ItemsSource = TopTracks;
             }
         
+
+        }
+
+        private void BG1_Completed_1(object sender, object e)
+        {
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
 
         }
     }

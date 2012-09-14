@@ -11,6 +11,16 @@
     mc:Ignorable="d" Loaded="pageRoot_Loaded_1">
 
     <Page.Resources>
+        <Storyboard x:Name="BG1" Completed="BG1_Completed_1">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="grid">
+                <EasingColorKeyFrame KeyTime="0:0:1.5" Value="#FF07031F"/>
+                <EasingColorKeyFrame KeyTime="0:0:7" Value="#FF031A1F"/>
+                <EasingColorKeyFrame KeyTime="0:0:12.5" Value="#FF031F0C"/>
+                <EasingColorKeyFrame KeyTime="0:0:17.8" Value="#FF1F0319"/>
+                <EasingColorKeyFrame KeyTime="0:0:23.9" Value="#FF1F0303"/>
+                <EasingColorKeyFrame KeyTime="0:0:28.4" Value="Black"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">Tweet your music</x:String>
@@ -21,7 +31,7 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid Style="{StaticResource LayoutRootStyle}">
+    <Grid Name="grid" Style="{StaticResource LayoutRootStyle}" Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="53*"/>

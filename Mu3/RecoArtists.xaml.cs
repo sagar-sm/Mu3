@@ -20,6 +20,7 @@ using Windows.Security.Credentials;
 using Windows.Storage.Streams;
 using System.Net.Http;
 using System.Xml;
+using Windows.Media;
 
 // The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
@@ -61,6 +62,12 @@ namespace Mu3
 
         private async void pageRoot_Loaded_1(object sender, RoutedEventArgs e)
         {
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
+
+
             if (Security._vault.RetrieveAll().Count == 0)
                 Globalv.session_key = null;
             else
@@ -174,6 +181,15 @@ namespace Mu3
 
             progbar.Visibility = Visibility.Collapsed;
         
+        }
+
+        private void BG1_Completed_1(object sender, object e)
+        {
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
+
         }
 
     }

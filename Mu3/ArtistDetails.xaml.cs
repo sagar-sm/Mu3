@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Media;
 using System.Xml;
 
 // The Split Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234234
@@ -163,6 +164,11 @@ namespace Mu3
         {
             itemListView.ItemsSource = Globalv.RecommendedArtists;
             progbar.Visibility = Visibility.Collapsed;
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
+
         }
         async void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -186,6 +192,15 @@ namespace Mu3
                 ArtistContentTb.Text = content;
             }
             progbar.Visibility = Visibility.Collapsed;
+        }
+
+        private void BG1_Completed_1(object sender, object e)
+        {
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
+
         }
 
 

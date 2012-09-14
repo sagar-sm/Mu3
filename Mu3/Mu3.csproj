@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>Mu3_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <ExpressionBlendVersion>5.0.30709.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -145,9 +146,6 @@
     <Compile Include="RecoArtists.xaml.cs">
       <DependentUpon>RecoArtists.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SplitPage1.xaml.cs">
-      <DependentUpon>SplitPage1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Trends.xaml.cs">
       <DependentUpon>Trends.xaml</DependentUpon>
     </Compile>
@@ -168,6 +166,12 @@
   <ItemGroup>
     <Content Include="Assets\BadgeIcon.png" />
     <Content Include="Assets\BG.jpg" />
+    <Content Include="Assets\BG1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\BG2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\PlayMusic.png" />
     <Content Include="Assets\RecoArtists.png" />
@@ -207,10 +211,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RecoArtists.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SplitPage1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

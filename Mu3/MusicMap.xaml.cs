@@ -21,6 +21,7 @@ using System.Net.Http;
 using Bing.Maps;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Windows.Media;
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace Mu3
@@ -240,6 +241,24 @@ namespace Mu3
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void BG1_Completed_1(object sender, object e)
+        {
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
+
+        }
+
+        private void pageRoot_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
+
         }
     }
 }

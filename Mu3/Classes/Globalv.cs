@@ -20,7 +20,7 @@ namespace Mu3
         public static OAuthToken TwitterAccessToken = new OAuthToken(); //vault
         public static string ConsumerKey = "jvookLg4Icyl4757z4swSA";
         public static string ConsumerSecret = "6yUT7YIeqSg3dmUJ3p39oeWNkZTEM4wAjExdlOcuC4"; //vault
-        public static string TwitterUserId;
+        public static string TwitterUserId; //[IMPORTANT]: Check this later
 
         public static long unix_timestamp()
         {

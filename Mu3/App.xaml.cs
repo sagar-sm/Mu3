@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Media;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -31,7 +32,28 @@ namespace Mu3
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            GlobalAudioElement.MediaOpened += GlobalAudioElement_MediaOpened;
+            GlobalAudioElement.MediaEnded += GlobalAudioElement_MediaEnded;
+            GlobalAudioElement.MediaFailed += GlobalAudioElement_MediaFailed;
         }
+
+        void GlobalAudioElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            MediaControl.IsPlaying = false;
+        }
+
+        void GlobalAudioElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            MediaControl.IsPlaying = false;
+        }
+
+        void GlobalAudioElement_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            //throw new NotImplementedException();
+            MediaControl.IsPlaying = true;
+        }
+
+        
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -95,6 +117,7 @@ namespace Mu3
             get { return _globalAudioElement; }
         }
 
+        
         private void OnMediaLoaded(object sender, RoutedEventArgs e)
         {
             if (_globalAudioElement == null)

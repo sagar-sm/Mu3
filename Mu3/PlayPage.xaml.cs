@@ -51,10 +51,13 @@ namespace Mu3
             MediaControl.PausePressed += MediaControl_PausePressed;
             MediaControl.PlayPauseTogglePressed += MediaControl_PlayPauseTogglePressed;
             MediaControl.StopPressed += MediaControl_StopPressed;
+            BG1.Begin();
 
         }
 
-        bool isScrobbledOnce = false;
+
+        bool isScrobbledOnce = false; //[IMPORTANT]: IMPLEMENT THIS COMPLETELY
+        
         bool justLoggedOut = false;
 
         System.Uri EndUri = WebAuthenticationBroker.GetCurrentApplicationCallbackUri();
@@ -65,28 +68,31 @@ namespace Mu3
             MediaControl.IsPlaying = false;
         }
 
-        private void MediaControl_PlayPauseTogglePressed(object sender, object e)
-        {/*
-            if (MediaControl.IsPlaying == true)
+        private async void MediaControl_PlayPauseTogglePressed(object sender, object e)
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                mediaPlayer.Pause();
-                MediaControl.IsPlaying = false;
-            }
-            else
-            {
-                mediaPlayer.Play();
-                MediaControl.IsPlaying = true;
-            }*/
+                if (MediaControl.IsPlaying == true)
+                {
+                    App.GlobalAudioElement.Pause();
+                    MediaControl.IsPlaying = false;
+                }
+                else
+                {
+                    App.GlobalAudioElement.Play();
+                    MediaControl.IsPlaying = true;
+                }
+            });
         }
+
 
         private void MediaControl_PausePressed(object sender, object e)
         {
-            App.GlobalAudioElement.Pause();
         }
 
         private void MediaControl_PlayPressed(object sender, object e)
         {
-            App.GlobalAudioElement.Play();
+            
         }
 
         string lfm_api_key = Globalv.lfm_api_key;
@@ -104,7 +110,6 @@ namespace Mu3
                 StorageFile file = await pkr.PickSingleFileAsync();
                 if (null != file)
                 {
-
                     var strm = await file.OpenAsync(FileAccessMode.Read);
                     Playlist.NowPlaying.Clear();
                     App.GlobalAudioElement.AudioCategory = Windows.UI.Xaml.Media.AudioCategory.BackgroundCapableMedia;
@@ -115,12 +120,14 @@ namespace Mu3
                     isScrobbledOnce = false;
 
                     MediaControl.IsPlaying = true;
+                    
                     //PlayPauseBtn.Content = "";
 
                     id3 = await file.Properties.GetMusicPropertiesAsync();
                     SongTitle.Text = id3.Title;
                     Artist.Text = id3.Artist;
-
+                    MediaControl.ArtistName = id3.Artist;
+                    MediaControl.TrackName = id3.Title;
                     Playlist.NowPlaying.Add(id3);
                     Lastfm.track_updateNowPlaying(id3);
 
@@ -135,14 +142,16 @@ namespace Mu3
                             rd.ReadToFollowing("artist");
                             rd.ReadToDescendant("name");
                             //SubtitleInfoTbx.Text = rd.ReadElementContentAsString();
+                            
                         }
 
+                        Uri src;
                         using (XmlReader rd = XmlReader.Create(new StringReader(xmlinfo)))
                         {
                             rd.ReadToFollowing("image");
                             rd.ReadToNextSibling("image");
                             rd.ReadToNextSibling("image");
-                            Uri src = new Uri(rd.ReadElementContentAsString(), UriKind.Absolute);
+                            src = new Uri(rd.ReadElementContentAsString(), UriKind.Absolute);
                             AlbumArtHolder.Source = new BitmapImage(src);
                         }
                         using (XmlReader rd = XmlReader.Create(new StringReader(xmlinfo)))
@@ -163,9 +172,13 @@ namespace Mu3
                                 rd.ReadToNextSibling("image");
                                 Uri src = new Uri(rd.ReadElementContentAsString(), UriKind.Absolute);
                                 AlbumArtHolder.Source = new BitmapImage(src);
+                                MediaControl.AlbumArt = src;
                             }
                         }
-                        catch (Exception) { AlbumArtHolder.Source = null; }
+                        catch (Exception) 
+                        { 
+                            AlbumArtHolder.Source = null;
+                        }
                     }
                     //prepare for scrobble
                     TimelineMarker tlm = new TimelineMarker();
@@ -357,6 +370,11 @@ namespace Mu3
             {
                 await Lastfm.track_love(id3);
             }
+        }
+
+        private void BG1_Completed_1(object sender, object e)
+        {
+            BG1.Begin();
         }
     }
 }

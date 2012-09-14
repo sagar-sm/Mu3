@@ -17,6 +17,7 @@ using Windows.Storage.FileProperties;
 using Windows.Storage.Streams;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
+using Windows.Media;
 using System.Net.Http;
 
 using TwitterRtLibrary;
@@ -37,8 +38,7 @@ namespace Mu3
         public TweetMusic()
         {
             this.InitializeComponent();
-            TweetBox.Text = "#nowPlaying Metro Music via #Mu";
-
+            TweetBox.Text = "#nowPlaying via Mu";
 
         }
         TwitterRt tr = new TwitterRt(Globalv.ConsumerKey, Globalv.ConsumerSecret, @"http://Mu3.com");
@@ -113,6 +113,10 @@ namespace Mu3
 
         private async void pageRoot_Loaded_1(object sender, RoutedEventArgs e)
         {
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
             progbar.Visibility = Visibility.Visible;
             string resp2 = await Twitter.Get_tweets("#NowPlaying");
             JObject jo2 = JObject.Parse(resp2);
@@ -137,6 +141,14 @@ namespace Mu3
             //_statusTextBlock.Text = tr.Status;
 
 
+        }
+
+        private void BG1_Completed_1(object sender, object e)
+        {
+            if (MediaControl.IsPlaying)
+            {
+                BG1.Begin();
+            }
         }
     }
 }
