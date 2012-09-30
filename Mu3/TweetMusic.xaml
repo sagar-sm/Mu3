@@ -162,7 +162,7 @@
         <AppBar Padding="10,0,10,0">
             <Grid>
                 <Button Name="TwitterConnectBtn" HorizontalAlignment="Left"  
-                    Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Connect to Twitter" Content="t" Click="TwitterConnectBtn_Click_1"/>
+                    Style="{StaticResource AppBarButtonStyle}" AutomationProperties.Name="Twitter Connect" Content="t" Click="TwitterConnectBtn_Click_1"/>
                 <Button Name="RefreshButton" Style="{StaticResource AppBarButtonStyle}" 
                         Margin="100,0,0,0" Content="&#xE117;" AutomationProperties.Name="Refresh" Click="RefreshButton_Click_1"/>
             </Grid>

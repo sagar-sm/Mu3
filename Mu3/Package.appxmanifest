@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="2d9539f2-ec4b-4674-86d2-6b6c82b60c5d" Publisher="CN=Sagar" Version="1.0.0.0" />
+  <Identity Name="2d9539f2-ec4b-4674-86d2-6b6c82b60c5d" Publisher="CN=Sagar" Version="3.0.0.2" />
   <Properties>
     <DisplayName>Mu3</DisplayName>
     <PublisherDisplayName>Sagar</PublisherDisplayName>
@@ -16,6 +16,7 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Mu3.App">
       <VisualElements DisplayName="Mu" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Mu3" ForegroundText="light" BackgroundColor="#000000">
+        <DefaultTile ShowName="allLogos" />
         <LockScreen Notification="badge" BadgeLogo="Assets\BadgeIcon.png" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#000000" />
       </VisualElements>

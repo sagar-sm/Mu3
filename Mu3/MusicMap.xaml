@@ -32,7 +32,7 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid x:Name="grid" Style="{StaticResource LayoutRootStyle}" Background="Black">
+    <Grid x:Name="grid" Style="{StaticResource LayoutRootStyle}" Background="#CC000000">
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -50,12 +50,14 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-        <StackPanel Grid.Row="1" Margin="0">
-            <bm:Map Height="370" Credentials="AuPnFA1hWmAaG0naEf45hKbm0ao5EnQZJP1hCRgAA-w0jytoMTlTd_22_jsdPDCt" x:Name="myMap" Loaded="myMap_Loaded_1">
+        <StackPanel Grid.Row="1" Margin="0" >
+            <bm:Map Height="700" Credentials="AuPnFA1hWmAaG0naEf45hKbm0ao5EnQZJP1hCRgAA-w0jytoMTlTd_22_jsdPDCt" x:Name="myMap" Loaded="myMap_Loaded_1">
                 <!--bm:Map.Center>
                     <bm:Location Latitude="46.227480" Longitude="-122.192955" />
                 </bm:Map.Center-->
             </bm:Map>
+        </StackPanel>
+        <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Background="#CC000000">
             <TextBlock Name="SubHeaderTb" Text="Tap a pin on the map to view the music trends there..." Margin="30,10,10,10" Style="{StaticResource PageSubheaderTextStyle}"/>
             <ScrollViewer Margin="0,5,0,10" Style="{StaticResource HorizontalScrollViewerStyle}">
                 <StackPanel Orientation="Horizontal">
@@ -68,8 +70,8 @@
                                 <StackPanel Orientation="Horizontal" Width="370" Height="70" Margin="10,0,0,0">
                                     <Image Name="AlbumArtHolder" Source="{Binding image}" Stretch="UniformToFill"/>
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Name="TitleTb" Margin="5,2,2,2" TextWrapping="NoWrap" Text="{Binding Title}" Style="{StaticResource SubheaderTextStyle}" />
-                                        <TextBlock Name="ArtistTb" Margin="5,2,2,2" Text="{Binding Artist}" Style="{StaticResource ItemTextStyle}"/>
+                                        <TextBlock Name="TitleTb" Margin="5,2,2,2" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Text="{Binding Title}" Style="{StaticResource SubheaderTextStyle}" />
+                                        <TextBlock Name="ArtistTb" Margin="5,2,2,2" Text="{Binding Artist}" TextTrimming="WordEllipsis" TextWrapping="NoWrap" Style="{StaticResource ItemTextStyle}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
@@ -77,9 +79,9 @@
                     </GridView>
                 </StackPanel>
             </ScrollViewer>
-        </StackPanel>
 
-        <VisualStateManager.VisualStateGroups>
+        </StackPanel>
+            <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->
             <VisualStateGroup x:Name="ApplicationViewStates">

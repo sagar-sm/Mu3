@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Xml;
 using Windows.Media;
+using Windows.Data.Html;
 
 // The Split Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234234
 
@@ -192,7 +193,7 @@ namespace Mu3
                     string content = rd.ReadElementContentAsString();
                     rd.ReadToFollowing("content");
                     content = String.Concat(content, rd.ReadElementContentAsString());
-                    TrackContentTb.Text = content;
+                    TrackContentTb.Text = HtmlUtilities.ConvertToText(content);
                 }
             }
             catch (Exception) { TrackContentTb.Text = "Additional information is currently unavailable."; }

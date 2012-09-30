@@ -67,7 +67,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <Image Name="ImageHolder" Width="80" Height="80" Source="{Binding image}" Stretch="UniformToFill"/>
-                            <TextBlock Name="NameTB" Text="{Binding Title}" Style="{StaticResource SubheaderTextStyle}"/>
+                            <TextBlock Name="NameTB" Text="{Binding Title}" Padding="5" Style="{StaticResource SubheaderTextStyle}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

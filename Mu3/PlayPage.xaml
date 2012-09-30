@@ -59,7 +59,7 @@
             </StackPanel-->
                 <StackPanel Orientation="Horizontal" Margin="100,100,300,30">
                     <Image Name="AlbumArtHolder" HorizontalAlignment="Left" Height="200" Width="200"/>
-                    <TextBlock Name="SummaryInfoTbx" TextWrapping="Wrap" Width="700" Style="{StaticResource SubtitleTextStyle}" Margin="10"/>
+                    <TextBlock Name="SummaryInfoTbx" Width="700" Height="200" TextWrapping="Wrap" TextTrimming="WordEllipsis" FontSize="20" Margin="10" Foreground="#7FFFFFFF" FontFamily="Segoe UI Light"/>
                 </StackPanel>
                 <TextBlock Name="SongTitle" Margin="100,0,0,0" Style="{StaticResource HeaderTextStyle}"/>
                 <TextBlock Name="Artist" Margin="100,10,0,0" Style="{StaticResource SubheaderTextStyle}"/>

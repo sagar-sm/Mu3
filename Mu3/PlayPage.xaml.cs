@@ -20,6 +20,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.ApplicationSettings;
+using Windows.UI.Xaml.Documents;
 
 using Windows.System;
 using Windows.Storage;
@@ -33,6 +34,9 @@ using Windows.Security.Authentication;
 using Windows.Security.Authentication.Web;
 using Windows.Security.Credentials;
 using Windows.Media;
+using Windows.Data.Html;
+using System.Text.RegularExpressions;
+
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -51,7 +55,6 @@ namespace Mu3
             MediaControl.PausePressed += MediaControl_PausePressed;
             MediaControl.PlayPauseTogglePressed += MediaControl_PlayPauseTogglePressed;
             MediaControl.StopPressed += MediaControl_StopPressed;
-            BG1.Begin();
 
         }
 
@@ -120,7 +123,7 @@ namespace Mu3
                     isScrobbledOnce = false;
 
                     MediaControl.IsPlaying = true;
-                    
+                    BG1.Begin();
                     //PlayPauseBtn.Content = "";
 
                     id3 = await file.Properties.GetMusicPropertiesAsync();
@@ -158,7 +161,9 @@ namespace Mu3
                         {
                             rd.ReadToFollowing("wiki");
                             rd.ReadToDescendant("summary");
-                            SummaryInfoTbx.Text = rd.ReadElementContentAsString();
+                            string text = rd.ReadElementContentAsString();
+
+                            SummaryInfoTbx.Text = HtmlUtilities.ConvertToText(text);                                                       
                         }
                     }
                     catch (Exception)
@@ -241,9 +246,11 @@ namespace Mu3
         {
             if (MediaControl.IsPlaying)
             {
+                BG1.Begin();
                 id3 = Playlist.NowPlaying[0];
                 SongTitle.Text = id3.Title;
-                Artist.Text = id3.Title;
+                Artist.Text = id3.Artist;
+                
             }
             else
             {
@@ -374,7 +381,8 @@ namespace Mu3
 
         private void BG1_Completed_1(object sender, object e)
         {
-            BG1.Begin();
+            if(MediaControl.IsPlaying)
+                BG1.Begin();
         }
     }
 }

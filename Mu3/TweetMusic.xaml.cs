@@ -6,6 +6,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
@@ -38,7 +39,11 @@ namespace Mu3
         public TweetMusic()
         {
             this.InitializeComponent();
-            TweetBox.Text = "#nowPlaying via Mu";
+
+            if (MediaControl.IsPlaying)
+                TweetBox.Text = "#nowplaying " + MediaControl.TrackName + " via @MetroMu";
+            else
+                TweetBox.Text = "#nowplaying";
 
         }
         TwitterRt tr = new TwitterRt(Globalv.ConsumerKey, Globalv.ConsumerSecret, @"http://Mu3.com");
@@ -87,7 +92,8 @@ namespace Mu3
         private async void TwitterConnectBtn_Click_1(object sender, RoutedEventArgs e)
         {
             await tr.GainAccessToTwitter();
-            TweetBox.Text = tr.Status;
+            //TweetBox.Text = tr.Status;
+            
 
         }
 
